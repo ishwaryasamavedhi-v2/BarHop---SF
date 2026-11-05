@@ -1,24 +1,22 @@
-//
-//  ContentView.swift
-//  BarHop - SF
-//
-//  Created by Ishwarya Samavedhi on 11/4/26.
-//
-
 import SwiftUI
 
 struct ContentView: View {
+    @State private var model = ExploreViewModel(
+        barRepository: MockBarRepository(),
+        favoritesRepository: LocalFavoritesRepository()
+    )
+
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
+        MainTabView(model: model)
+            .preferredColorScheme(.dark)
     }
 }
 
-#Preview {
+#Preview("Bar Hop · Explore") {
     ContentView()
+}
+
+#Preview("Bar Hop · Larger text") {
+    ContentView()
+        .environment(\.dynamicTypeSize, .accessibility1)
 }
